@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from accounts.permissions import IsTeacherOrSuperAdminPermission
 from students.models import Student
 from teachers.models import Teacher, Rating
 from teachers.serializers import (
@@ -12,7 +13,7 @@ from teachers.serializers import (
 
 
 class TeacherViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, IsTeacherOrSuperAdminPermission,)
     queryset = Teacher.objects.all().order_by(
         'user__first_name'
     ).select_related('user')
@@ -38,7 +39,7 @@ class TeacherViewSet(viewsets.ModelViewSet):
         return self.serializer_class
 
     @action(methods=['POST', ], detail=True,
-        permission_classes=[IsAuthenticated,])
+        permission_classes=[IsTeacherOrSuperAdminPermission,])
     def attach_students(self, request, pk=None):
         teacher = self.get_object()
         serializer = self.get_serializer_class()
@@ -52,7 +53,7 @@ class TeacherViewSet(viewsets.ModelViewSet):
         return Response(data=data, status=status.HTTP_204_NO_CONTENT)
 
     @action(methods=['POST', ], detail=True,
-        permission_classes=[IsAuthenticated,])
+        permission_classes=[IsTeacherOrSuperAdminPermission,])
     def rate_students(self, request, pk=None):
         teacher = self.get_object()
         serializer = self.get_serializer_class()
