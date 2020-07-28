@@ -3,6 +3,7 @@ School Management System for Students and Teachers
 
 # Project Setup
 
+## Without docker
 ```
 git clone ..
 cd sms
@@ -11,6 +12,13 @@ python3 -m venv env
 source env/bin/activate
 pip install -r requirements/development.txt
 ./manane.py runserver
+```
+
+## With Docker
+```
+git clone .
+cd sms
+docker-compose up --build
 ```
 
 # API end Points
