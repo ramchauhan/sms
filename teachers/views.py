@@ -63,7 +63,7 @@ class TeacherViewSet(viewsets.ModelViewSet):
 
         for student in serializer.validated_data['students']:
             Rating.objects.get_or_create(
-                teacher=teacher, student=serializer.validated_data['student']
+                teacher=teacher, student=student
             )
 
         data = {'success': 'Marked Star Student successfully'}
