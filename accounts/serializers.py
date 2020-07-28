@@ -41,6 +41,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
+    user_type = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -48,6 +49,9 @@ class UserListSerializer(serializers.ModelSerializer):
             'id', 'email', 'username', 'user_type', 'first_name', 'last_name',
             'is_active'
         ]
+
+    def get_user_type(self, obj):
+        return obj.get_user_type_display()
 
 
 class UserLoginSerializer(serializers.Serializer):
