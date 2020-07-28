@@ -48,3 +48,27 @@ class TeacherUpdateSerializer(serializers.ModelSerializer):
         user.last_name = validated_data['user'].get('last_name', user.last_name)
         user.save()
         return instance
+
+
+class RateStudentSerializer(serializers.Serializer):
+    student_id = serializers.ListSerializer(
+        child=serializers.IntegerField(),
+        allow_empty=False
+    )
+
+    def validate(self, attrs):
+        students = self.context['instance'].students.filter(
+            id__in=attrs['student_id']
+        )
+        if students.count() != len(attrs['student_id']):
+            student_ids_diff = (
+                set(attrs['student_id']) - set(
+                    students.values_list('id', flat=True)
+                )
+            )
+            raise serializers.ValidationError(
+                f"{student_ids_diff} are not valid Student IDs"
+            )
+
+        attrs['students'] = students
+        return attrs

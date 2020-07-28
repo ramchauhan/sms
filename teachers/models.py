@@ -36,3 +36,6 @@ class Rating(models.Model):
         on_delete=models.CASCADE,
         related_name='raitins'
     )
+
+    class Meta:
+        unique_together = ('teacher', 'student')
