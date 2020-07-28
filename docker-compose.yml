@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: sms
+       MYSQL_USER: sms
+       MYSQL_PASSWORD: sms
+       DATABASE: mysql
+       DEBUG: "False"
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/my_app_dir
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "False"
+      DB_NAME: sms
+      DB_USER: sms
+      DB_PASSWORD: sms
+      DB_PORT: 3306
+    depends_on:
+      - db
+
