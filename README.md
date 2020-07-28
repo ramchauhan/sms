@@ -1,6 +1,18 @@
 # sms
 School Management System for Students and Teachers
 
+# Project Setup
+
+```
+git clone ..
+cd sms
+git checkout develp
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements/development.txt
+./manane.py runserver
+```
+
 # API end Points
 
 ## Register API
