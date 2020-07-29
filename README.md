@@ -5,7 +5,7 @@ School Management System for Students and Teachers
 
 ## Without docker
 ```
-git clone ..
+git clone .
 cd sms
 git checkout develp
 python3 -m venv env
@@ -225,5 +225,41 @@ ValidationError:
     "non_field_errors": [
         "{2} are not valid Student IDs"
     ]
+}
+```
+
+# GraphQL query
+
+## Teachers query and star students
+```
+query teachers{
+  teachers{
+    id,
+    user{
+      firstName
+      lastName
+    }
+    students{
+      id
+      user{
+        firstName
+        lastName
+      }
+    }
+  }
+}
+```
+
+## Students Query
+
+```
+query studnet{
+  students{
+    id
+    user{
+      firstName
+      lastName
+    }
+  }
 }
 ```
