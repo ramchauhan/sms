@@ -263,3 +263,14 @@ query studnet{
   }
 }
 ```
+
+# Mark and Unmark student Star Mutation
+
+```
+mutation StudnetStar{
+  	starStudent(teacherId: 1, studentIds: [1], markStar: true){
+        errorMessages
+        message
+  }
+}
+```
