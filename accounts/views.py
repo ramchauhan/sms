@@ -1,6 +1,6 @@
 from django.contrib.auth import (get_user_model, authenticate, logout)
 
-from rest_framework import status, generics, viewsets
+from rest_framework import status, generics, viewsets, serializers
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -20,6 +20,7 @@ class UserAuthenticationViewSet(viewsets.GenericViewSet):
         'logout': EmptySerializer
     }
     permission_classes = (AllowAny,)
+    queryset = User.objects.all()
 
     @action(methods=['POST', ], detail=False)
     def register(self, request, *args, **kwargs):

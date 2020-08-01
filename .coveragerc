@@ -1,0 +1,2 @@
+[run]
+omit = *config*, *.myvenv/*, *__init__.py, *env/*, *admin.py, *tests*, *migrations*, *apps.*, *urls.*, *constants.*, manage.py
