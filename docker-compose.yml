@@ -21,7 +21,7 @@ services:
     ports:
       - "9000:9000"
     environment:
-      DEBUG: "False"
+      DEBUG: "True"
       DB_NAME: sms
       DB_USER: sms
       DB_PASSWORD: sms
