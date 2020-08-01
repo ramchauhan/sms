@@ -15,6 +15,10 @@ pip install -r requirements/development.txt
 ```
 
 ## With Docker
+
+For now docker uses manage.py runserver and DEBUG = True to serve the static files. For deployement we can
+use nginx to full fill that job.
+
 ```
 git clone .
 cd sms
