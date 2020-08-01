@@ -21,6 +21,17 @@ cd sms
 docker-compose up --build
 ```
 
+# Run the test cases
+```
+git clone .
+cd sms
+git checkout develp
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements/testing.txt
+pytest -vv tests/
+```
+
 # API end Points
 
 ## Register API
